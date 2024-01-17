@@ -1,0 +1,11 @@
+<p>my-reciever works!</p>
+<h1>{{msg_s}}</h1>
+
+
+
+<div class="input-group mb-3 test">
+    <span class="input-group-text">Street:</span>
+    <input type="text" #newItem  class="form-control">
+
+    <button type="button" (click)="sendDataBack(newItem.value)">SenddATA</button>
+  </div>

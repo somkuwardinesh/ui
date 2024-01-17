@@ -1,0 +1,114 @@
+
+<div class="test">
+
+    <!-- [formGroup]="profileForm" -->
+  
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  
+      <!-- <label for="first-name">First Name: </label>-->
+      <input id="empId" type="hidden" formControlName="id">
+  
+      <div class="input-group mb-3">
+        <span class="input-group-text">First Name:</span>
+        <input type="text" aria-label="First name" formControlName="firstName" class="form-control">
+      </div>
+  
+  
+  
+      <div class="input-group mb-3">
+        <span class="input-group-text">Last Name:</span>
+        <input type="text" aria-label="Last name" formControlName="lastName" class="form-control">
+      </div>
+  
+      <div formGroupName="address">
+        <h2>Address student compo</h2>
+  
+        <div class="input-group mb-3">
+          <span class="input-group-text">Street:</span>
+          <input type="text" aria-label="Street" formControlName="street" class="form-control">
+        </div>
+  
+        <div class="input-group mb-3">
+          <span class="input-group-text">City:</span>
+          <input type="text" aria-label="City" formControlName="city" class="form-control">
+        </div>
+  
+        <div class="input-group mb-3">
+          <span class="input-group-text">State:</span>
+          <input type="text" aria-label="State" formControlName="state" class="form-control">
+        </div>
+  
+        <div class="input-group mb-3">
+          <span class="input-group-text">Zip Code:</span>
+          <input type="text" aria-label="Zip Code" formControlName="zipCode" class="form-control">
+        </div>
+      </div>
+  
+  
+  
+      <p>Form Status: {{ profileForm.status }}</p>
+  
+      <p>Complete the form to enable button.</p>
+  
+      <div *ngIf="!profileForm.value.id">
+  
+        <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+      </div>
+  
+      <div *ngIf="profileForm.value.id">
+        <button type="button" (click)="updateProfile()">Update Profile</button>
+      </div>
+  
+    </form>
+  
+  
+  
+  </div>
+  
+  <div class="test">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">City</th>
+          <th scope="col">Street</th>
+          <th scope="col">State</th>
+          <th scope="col">ZipCode</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+  
+  
+  
+        <tr *ngFor="let use of userss">
+          <td>{{use.id}}</td>
+          <td>{{use.firstName}}</td>
+          <td>{{use.lastName}}</td>
+          <td>{{use.address?.city}}</td>
+          <td>{{use.address?.street}}</td>
+          <td>{{use.address?.state}}</td>
+          <td>{{use.address?.zipCode}}</td>
+          <td>
+            <button type="button" (click)="deleteEmp(use.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+          <td>
+            <button type="button" (click)="editEmp(use.id)">
+              <i class="bi bi-pen"></i>
+            </button>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  
+  </div>
+  
+  
+  <br>
+  <br>
+  <br>

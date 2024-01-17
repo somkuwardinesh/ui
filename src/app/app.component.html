@@ -1,0 +1,45 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- <a class="navbar-brand" href="#">Admin Panel</a> -->
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#home" routerLink="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="button">
+          <a class="nav-link" href="#emp-details" routerLinkActive="activebutton" ariaCurrentWhenActive="page"
+            routerLink="/emp-details">Emp Details</a>
+        </li>
+
+        <li class="button">
+          <a class="nav-link" [routerLink]="['/first', name]">First</a>
+        </li>
+
+        <li class="button">
+          <a class="nav-link" routerLink="/go">Go</a>
+        </li>
+
+        <li class="button">
+          <a class="nav-link"  routerLinkActive="activebutton" [queryParams]="user"
+            routerLink="/receiver" [state]=user>Receiver</a>
+        </li>
+
+
+        <li class="button">
+          <a class="nav-link" routerLink="/sender">Sender</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<h1>Welcom bro!!!!!!</h1>
+
+<button type="button" (click)="show()" >Submit</button> 
+
+
+<router-outlet></router-outlet>
