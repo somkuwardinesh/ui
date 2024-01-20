@@ -10,11 +10,11 @@ import { environment } from 'src/environments/environment';
 
 const headers = new HttpHeaders()
   .set('content-type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*')
   .set('Access-Control-Allow-Methods', 'GET')
   .set('Access-Control-Allow-Origin', 'http://api:8080/')
+  .set('Access-Control-Allow-Credentials', 'true')
   .set('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X- Request-With');
-  // .set('Access-Control-Allow-Credentials', 'true')
+  // .set('Access-Control-Allow-Origin', '*')
   // .set('Access-Control-Allow-Origin', 'https://reqres.in/');
 
 
