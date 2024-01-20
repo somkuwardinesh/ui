@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ${REPOSITORY_TAG}
+        image: dineshdocker3246/ui:latest
 
 ---
 apiVersion: v1
