@@ -24,5 +24,5 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY frontend-nginx.conf /etc/nginx/conf.d
 
 # COPY /dist/ui /usr/share/nginx/html
-COPY --from=build-step /app/dist /usr/share/nginx/html
+COPY --from=build-step /app/dist/test-105 /usr/share/nginx/html
 
