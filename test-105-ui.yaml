@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: dineshdocker3246/ui:latest
+        image: dineshdocker3246/ui:${BUILD_ID}
 
 ---
 apiVersion: v1
