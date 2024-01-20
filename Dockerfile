@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:12.13.0-alpine AS build-step
+FROM node:20-alpine AS build-step
 RUN echo "build-step"
 RUN mkdir -p /app
 
