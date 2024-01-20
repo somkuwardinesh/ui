@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM 20.11-bullseye AS build-step1
+FROM 20.11-bullseye AS build-step
 RUN echo "base"
 RUN mkdir -p /app
 
@@ -25,5 +25,6 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 COPY frontend-nginx.conf /etc/nginx/conf.d
 
-COPY /dist/ui /usr/share/nginx/html
+# COPY /dist/ui /usr/share/nginx/html
+COPY --from=build-step /app/dist/ui /usr/share/nginx/html
 
