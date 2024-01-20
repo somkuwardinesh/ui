@@ -1,4 +1,4 @@
-
+# syntax=docker/dockerfile:1
 FROM 20.11-bullseye AS build-step1
 RUN echo "base"
 RUN mkdir -p /app
