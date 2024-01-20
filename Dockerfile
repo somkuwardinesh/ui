@@ -1,5 +1,5 @@
 
-FROM node:10-alpine as build-step
+FROM 20.11-bullseye as build-step
 
 RUN mkdir -p /app
 
