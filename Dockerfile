@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM node:12.13.0-alpine AS build-step
-RUN echo "base"
+RUN echo "build-step"
 RUN mkdir -p /app
 
 WORKDIR /app
@@ -17,10 +17,9 @@ COPY . /app
 
 RUN npm run build
 
-RUN ls -l
 
 FROM nginx:1.25.3-alpine AS build-step2
-RUN echo "base22"
+RUN echo "build-step2"
 RUN rm /etc/nginx/conf.d/default.conf
 
 COPY frontend-nginx.conf /etc/nginx/conf.d
