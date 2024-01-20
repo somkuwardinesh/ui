@@ -1,5 +1,5 @@
 
-FROM 20.11-bullseye as build-step
+FROM 20.11-bullseye AS build-step1
 
 RUN mkdir -p /app
 
@@ -19,7 +19,7 @@ RUN npm run build
 
 RUN ls -l
 
-FROM nginx:1.25.3-alpine
+FROM nginx:1.25.3-alpine AS build-step2
 
 RUN rm /etc/nginx/conf.d/default.conf
 
