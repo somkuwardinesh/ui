@@ -16,7 +16,7 @@ RUN npm install
 COPY . /app
 
 RUN npm run build
-
+RUN 'ls -l'
 
 FROM nginx:1.25.3-alpine AS build-step2
 RUN echo "build-step2"
