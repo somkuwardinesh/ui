@@ -7,34 +7,51 @@ pipeline {
      YOUR_DOCKERHUB_USERNAME = "dineshdocker3246"
 	   
      DOCKERHUB_CREDENTIALS = credentials('DocJenkins')
-     SERVICE_NAME = "first-frontend"
-     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
+     SERVICE_NAME = "ui"
+     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${SERVICE_NAME}:${BUILD_ID}"
+     
+        PROJECT_ID = 'ace-cycling-405314'
+        CLUSTER_NAME = 'cluster-17'
+        LOCATION = 'us-central1-c'
+        CREDENTIALS_ID = 'mu-kube'
    }
 
    stages {
       stage('Preparation') {
          steps {
-            //cleanWs()
-            // git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
+            cleanWs()
+             git credentialsId: 'Myajenkins', url: "https://github.com/somkuwardinesh/ui"
 		  sh 'ls -l'
+		  sh 'cat Dockerfile'
 		sh 'echo ${WORKSPACE}'
          }
       }
+      
+      stage("Build image") {
+            steps {
+                //sh 'sudo su'
+                script {
+                    myapp = docker.build("${REPOSITORY_TAG}")
+                }
+            }
+        }
+        stage("Push image") {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'DocJenkins') {
+                            myapp.push("latest")
+                            myapp.push("${env.BUILD_ID}")
+                    }
+                }
+            }
+        }
+      
 
-      stage('Build and Push Image') {
-         steps {
-           sh 'docker image build -t ${REPOSITORY_TAG} .'
-	   sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-	   sh 'echo pushing image to docker hub D..'
-	   sh 'docker image push ${REPOSITORY_TAG}'
-         }
-      }
-
-      stage('Deploy to Cluster') {
-          steps {
-		 sh 'envsubst < ${WORKSPACE}/test-105-ui.yml | kubectl apply -f -'
-     		
-          }
-      }
+       stage('Deploy to GKE') {
+            steps{
+                //sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' test-105-ui.yaml"
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'test-105-ui.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+            }
+        }
    }
 }
