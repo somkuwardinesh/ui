@@ -25,5 +25,5 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 COPY frontend-nginx.conf /etc/nginx/conf.d
 
-COPY /dist/test-105 /usr/share/nginx/html
+COPY /dist/ui /usr/share/nginx/html
 
