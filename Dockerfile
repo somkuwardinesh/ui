@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM 20.11-bullseye AS build-step
+FROM node:12.13.0-alpine AS build-step
 RUN echo "base"
 RUN mkdir -p /app
 
