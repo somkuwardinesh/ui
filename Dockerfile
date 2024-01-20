@@ -1,6 +1,6 @@
 
 FROM 20.11-bullseye AS build-step1
-
+RUN echo "base"
 RUN mkdir -p /app
 
 WORKDIR /app
@@ -20,7 +20,7 @@ RUN npm run build
 RUN ls -l
 
 FROM nginx:1.25.3-alpine AS build-step2
-
+RUN echo "base22"
 RUN rm /etc/nginx/conf.d/default.conf
 
 COPY frontend-nginx.conf /etc/nginx/conf.d
