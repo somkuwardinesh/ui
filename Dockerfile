@@ -16,7 +16,6 @@ RUN npm install
 COPY . /app
 
 RUN npm run build
-RUN 'ls -l'
 
 FROM nginx:1.25.3-alpine AS build-step2
 RUN echo "build-step2"
@@ -25,5 +24,5 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY frontend-nginx.conf /etc/nginx/conf.d
 
 # COPY /dist/ui /usr/share/nginx/html
-COPY --from=build-step /app/dist/ui /usr/share/nginx/html
+COPY --from=build-step /app/dist /usr/share/nginx/html
 
