@@ -27,7 +27,8 @@ const headers = new HttpHeaders()
 export class EmpComponent implements OnInit {
 
 
-  baseURL: string = 'http://localhost:8080'
+  // baseURL: string = 'http://localhost:8080'
+  baseURL: string = ''
 
   userss?: Emp[];
 
